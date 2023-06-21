@@ -23,9 +23,6 @@
         <div class="col {{if gt $idx 0}}border-right{{end}}">&nbsp;</div>
         <div class="col">&nbsp;</div>
       </div>
-      <div class="m-2">
-        <span class="badge badge-pill border {{if not .date_end}}exp-fill{{end}}">&nbsp;</span>
-      </div>
       <div class="row h-50">
         <div class="col {{if lt $idx (sub $exp_len 1)}}border-right{{end}}">&nbsp;</div>
         <div class="col">&nbsp;</div>
@@ -51,18 +48,6 @@
               <div class="section-subheading card-title exp-title text-muted my-0">{{.title | markdownify | emojify}}</div>
               <div class="section-subheading card-title exp-company text-muted my-0">
                 {{- with .company_url}}<a href="{{.}}" target="_blank" rel="noopener">{{end}}{{.company | markdownify | emojify}}{{with .company_url}}</a>{{end -}}
-              </div>
-              <div class="text-muted exp-meta">
-                {{ (time .date_start) | time.Format ($block.Params.date_format | default "January 2006") }} –
-                {{ if .date_end}}
-                  {{ (time .date_end) | time.Format ($block.Params.date_format | default "January 2006") }}
-                {{else}}
-                  {{ i18n "present" | default "Present" }}
-                {{end}}
-                {{with .location}}
-                  <span class="middot-divider"></span>
-                  <span>{{.}}</span>
-                {{end}}
               </div>
 
           {{- if .company_logo}}
